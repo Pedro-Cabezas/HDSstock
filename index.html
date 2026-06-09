@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Página en GitHub</title>
+</head>
+<body>
+
+    <h1>Lista de Usuarios desde la Base de Datos</h1>
+    <ul id="lista-usuarios"></ul>
+
+    <script>
+        // Cambia esto por la URL real que te dé Render al subir tu Backend
+        const URL_BACKEND = 'https://tu-proyecto-backend.onrender.com/usuarios';
+
+        // Hacemos la petición al backend en Render
+        fetch(URL_BACKEND)
+            .then(respuesta => respuesta.json())
+            .then(datos => {
+                const lista = document.getElementById('lista-usuarios');
+                // Recorremos los datos que vinieron de la base de datos a través de Render
+                datos.forEach(usuario => {
+                    const li = document.createElement('li');
+                    li.textContent = usuario.nombre;
+                    lista.appendChild(li);
+                });
+            })
+            .catch(error => console.error("Error al conectar con Render:", error));
+    </script>
+</body>
+</html>
